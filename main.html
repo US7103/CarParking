@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parking Management System</title>
+</head>
+<body style="background-image: url(Carparkingimg.jpg); height: 200px; ">
+    <header>
+   <u><h1 style="text-align: center;color: brown;border-style: solid;">Welcome to the Sarita Vihar DDA Apartments Parking System </h1></u>
+    <br/>
+    <h2 style="text-align: center;border-style: solid;color: aqua;">Car Entry and Exit Section</h2>
+    </header>
+   
+
+        <form id="form" autocomplete="off">
+            <br/>
+            <label style="color: antiquewhite;text-align: center;">Car Parking Entry Details</label>
+            <br/>
+            <div>
+            <label for="car" style="color: antiquewhite;">Car Owner Name</label>
+            <input type=""text" id="car" Placeholder="Car Owner Name">
+            </div>
+            <br/>
+            <div>
+            <label for="carnam" style="color: antiquewhite;">Car Name</label>
+            <input type=""text" id="carnam" Placeholder="Car Name">
+            </div>
+            <br/>
+            <div>
+            <label for="colour" style="color: antiquewhite;">Car Colour</label>
+            <input type=""text" id="colour" Placeholder="Car Colour">
+            </div>
+            <br/>
+            <div>
+            <label for="plate" style="color: #faebd7;">Plate Number</label>
+            <input type=""text" id="plate" Placeholder="Plate Number">
+            </div>
+            <br/>
+            <div>
+            <label for="timing" style="color: antiquewhite;">Entry Timing</label>
+            <input type=""text" id="timing" Placeholder="Entry Timing">
+            </div>
+            <br/>
+           <button type="submit">Submit</button>
+            <br/>
+            <input style="background-color: aqua;" type="Reset" value="Reset">
+            
+        </form>
+           
+      <h2>Car Parking Details</h2>
+    <ul id="carList"></ul>
+
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          const car = document.getElementById("car").value;
+          const carnam = document.getElementById("carnam").value;
+          const colour = document.getElementById("colour").value;
+          const plate = document.getElementById("plate").value;
+          const timing = document.getElementById("timing").value;
+      
+          const parking = {
+            car: car,
+            carnam: carnam,
+            colour: colour,
+            plate: plate,
+            timing: timing,
+          };
+      
+          localStorage.setItem(plate, JSON.stringify(parking));
+      
+          document.getElementById("car").value = "";
+          document.getElementById("carnam").value = "";
+          document.getElementById("colour").value = "";
+          document.getElementById("plate").value = "";
+          document.getElementById("timing").value = "";
+      
+          updatecarList();
+        });
+      
+        function updatecarList() {
+          const carList = document.getElementById("carList");
+          carList.innerHTML = "";
+      
+          for (let i = 0; i < localStorage.length; i++) {
+            const plate = localStorage.key(i);
+            const parking = JSON.parse(localStorage.getItem(plate));
+            const listItem = document.createElement("li");
+            listItem.textContent = `Car Owner Name: ${parking.car}, Car Name: ${parking.carnam}, Car Colour: ${parking.colour} Plate Number: ${parking.plate} Entry Timing: ${parking.timing}`;
+            carList.appendChild(listItem);
+          }
+        }
+      
+        updatecarList();
+      </script>
+      
+  
+   <footer>
+       <pre > <h2 style="text-align: center;box-sizing: border-box; width: 50%; border: 5px solid red ;box-sizing: content-box;position: absolute; left: 30%;">
+For any query:-Dial 8414224873
+Thanks to Visit the System.
+Copyright By Utkarsh Savarn.
+        </h2></pre>
+    </footer>
+</body>
+
+       
+</html>
